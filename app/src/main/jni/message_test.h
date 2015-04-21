@@ -41,20 +41,17 @@ using namespace gloox;
 
 using namespace std;
 
-class MessageTest : public MessageSessionHandler, ConnectionListener, LogHandler,
-MessageEventHandler, MessageHandler, ChatStateHandler
+class MessageTest : public MessageSessionHandler
+    , ConnectionListener
+    , LogHandler
+    , MessageEventHandler
+    , MessageHandler
+    , ChatStateHandler
 {
 public:
-    MessageTest(JNIEnv *env, jobject obj)
-    : m_session( 0 )
-    , m_messageEventFilter( 0 )
-    , m_chatStateFilter( 0 )
-    , m_env(env)
-    , m_obj(obj)     {}
-    
-    virtual ~MessageTest() {}
-    
-    
+    MessageTest(JNIEnv *env, jobject obj);
+    virtual ~MessageTest();
+
     void Log(string log)
     {
         static jmethodID cb = NULL;
