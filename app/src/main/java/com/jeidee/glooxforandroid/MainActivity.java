@@ -7,28 +7,45 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.util.Log;
 
+public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
 
-public class MainActivity extends ActionBarActivity {
-
-    private Button btn_;
-    private TextView textView_;
-
+    private Button m_connectBtn;
+    private Button m_recvBtn;
+    private TextView m_textView;
+    private MsgClient m_msgClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_ = (Button) findViewById(R.id.callBtn);
-        textView_ = (TextView) findViewById(R.id.textVal);
+        m_connectBtn = (Button) findViewById(R.id.connectBtn);
+        m_recvBtn = (Button) findViewById(R.id.recvBtn);
 
-        btn_.setOnClickListener(new View.OnClickListener() {
+        m_textView = (TextView) findViewById(R.id.textVal);
+
+        m_msgClient = MsgClient.Instance();
+
+        m_msgClient.setMsgClientEvent(this);
+        m_msgClient.init();
+
+        m_connectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NativeCall nativeCall = new NativeCall();
-                nativeCall.connectTest();
-                textView_.setText("call connectTest");
+            boolean ret = m_msgClient.connect("test1@bypass", "1234", "msg.iam0.com", 5223);
+            if (ret)
+                m_msgClient.run();
+
+            m_textView.setText("call connectTest");
+            }
+        });
+
+        m_recvBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            m_msgClient.recv();
             }
         });
     }
@@ -54,5 +71,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // implements IMsgClientEvent
+    public void onConnect() {
+        Log.d("MsgClientEvent", "onConnect");
+
+    }
+
+    public void onDisconnect(int e) {
+        Log.d("MsgClientEvent", "onDisconnect");
     }
 }

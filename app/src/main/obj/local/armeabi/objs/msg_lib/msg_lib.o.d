@@ -1,6 +1,11 @@
-/Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/obj/local/armeabi/objs/my_lib/message_test.o: \
- /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/message_test.cpp \
- /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/message_test.h \
+/Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/obj/local/armeabi/objs/msg_lib/msg_lib.o: \
+ /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/msg_lib.cpp \
+ /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/com_jeidee_glooxforandroid_MsgClient.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/jni.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/cdefs.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/cdefs_elf.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/android/api-level.h \
+ /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/msg_client.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/client.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/clientbase.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/macros.h \
@@ -92,54 +97,19 @@
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionsocks5proxy.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionhttpproxy.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/messagehandler.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/jni.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/android/log.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/unistd.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/select.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/signal.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/signal.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/signal.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/ucontext.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/user.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/sigcontext.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysconf.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/capability.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/pathconf.h \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/sstream \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/ostream \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/ios \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/__locale \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/mutex \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/__mutex_base \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/chrono \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/ratio \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/climits \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/system_error \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/cerrno \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/errno.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/errno.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/errno.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/errno.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/errno.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/errno-base.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/pthread.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sched.h \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/locale.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/locale.h \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/streambuf \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/locale \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/cstdarg \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/cstdlib \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/stdlib.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/stdlib.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/strings.h \
- /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/memory.h \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/nl_types.h \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/bitset \
- /Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/istream
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/android/log.h
 
-/Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/message_test.h:
+/Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/com_jeidee_glooxforandroid_MsgClient.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/jni.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/cdefs.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/cdefs_elf.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/android/api-level.h:
+
+/Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/msg_client.h:
 
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/client.h:
 
@@ -323,94 +293,4 @@
 
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/messagehandler.h:
 
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/jni.h:
-
 /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/android/log.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/unistd.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/select.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/signal.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/signal.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/signal.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/ucontext.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/user.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/sigcontext.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysconf.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/capability.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/pathconf.h:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/sstream:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/ostream:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/ios:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/__locale:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/mutex:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/__mutex_base:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/chrono:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/ratio:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/climits:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/system_error:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/cerrno:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/errno.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/errno.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/errno.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/errno.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/errno.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/errno-base.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/pthread.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sched.h:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/locale.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/locale.h:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/streambuf:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/locale:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/cstdarg:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/cstdlib:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/stdlib.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/stdlib.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/strings.h:
-
-/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/memory.h:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/../../android/support/include/nl_types.h:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/bitset:
-
-/Users/jeidee/Android/ndk/sources/cxx-stl/llvm-libc++/libcxx/include/istream:

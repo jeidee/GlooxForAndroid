@@ -1,5 +1,5 @@
-#ifndef CLIENT_H__
-#define CLIENT_H__
+#ifndef JD_MSG_CLIENT_H__
+#define JD_MSG_CLIENT_H__
 
 #include "gloox/client.h"
 #include "gloox/messagesessionhandler.h"
@@ -22,14 +22,12 @@
 using namespace gloox;
 
 #include <jni.h>
-
 #include <string>
 
 using namespace std;
 
 namespace jd {
-
-class client : public MessageSessionHandler
+class MsgClient : public MessageSessionHandler
     , ConnectionListener
     , LogHandler
     , MessageEventHandler
@@ -37,8 +35,8 @@ class client : public MessageSessionHandler
     , ChatStateHandler
 {
 public:
-    client(JNIEnv* env, jobject obj);
-    virtual ~client();
+    MsgClient(JavaVM* jvm, JNIEnv* env, jobject obj);
+    virtual ~MsgClient();
 
     bool connect(string jid, string pwd, string host, int port);
     bool disConnect();
@@ -47,7 +45,7 @@ public:
 
     // ConnectionListener
     virtual void onConnect();
-    virtual void onDisconnect();
+    virtual void onDisconnect(ConnectionError e);
     virtual bool onTLSConnect(const CertInfo& info);
 
     // MessageHandler
@@ -66,15 +64,16 @@ public:
     virtual void handleLog(LogLevel level, LogArea area, const string& message);
 
 private:
-    Client*          m_client;
     MessageSession*  m_session;
     MessageEventFilter*  m_messageEventFilter;
     ChatStateFilter*     m_chatStateFilter;
+    Client*          m_client;
 
+
+    JavaVM*     m_jvm;
     JNIEnv*     m_env;
     jobject     m_obj;
-};   // class client
-
-};  // namespace sg
-
-#endif  // CLIENT_H__
+    jmethodID   m_cbOnConnect;
+};  // class MsgClient
+};  // namespace jd
+#endif  // JD_MSG_CLIENT_H__

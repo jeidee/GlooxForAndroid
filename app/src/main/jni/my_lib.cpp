@@ -1,20 +1,15 @@
 #include "com_jeidee_glooxforandroid_NativeCall.h"
 
-#include "message_test.h"
+#include "client.h"
 
-JNIEXPORT void JNICALL Java_com_jeidee_glooxforandroid_NativeCall_connectTest (JNIEnv *env, jobject obj) {
-//    static jmethodID cb = NULL;
-//    jclass cls = env->GetObjectClass(obj);
-//
-//    if (cb == NULL) {
-//        cb = env->GetMethodID(cls, "testCallback", "(Ljava/lang/String;)V");
-//        if (cb == NULL) return;
-//    }
-//
-//    env->CallVoidMethod(obj, cb, env->NewStringUTF("[C->J] testCallback callback"));
+JNIEXPORT void JNICALL Java_com_jeidee_glooxforandroid_NativeCall_callbackTest (JNIEnv *env, jobject obj) {
+    static jmethodID cb = NULL;
+    jclass cls = env->GetObjectClass(obj);
 
-    MessageTest *r = new MessageTest(env, obj);
-    r->start();
-    delete( r );
+    if (cb == NULL) {
+        cb = env->GetMethodID(cls, "testCallback", "(Ljava/lang/String;)V");
+        if (cb == NULL) return;
+    }
 
+    env->CallVoidMethod(obj, cb, env->NewStringUTF("[C->J] testCallback callback"));
 }

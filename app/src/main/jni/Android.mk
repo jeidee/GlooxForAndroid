@@ -29,9 +29,10 @@ include $(PREBUILT_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := my_lib
-LOCAL_SRC_FILES :=  my_lib.cpp \
-                message_test.cpp \
+LOCAL_MODULE    := msg_lib
+LOCAL_SRC_FILES :=  msg_lib.cpp \
+                    msg_client.cpp \
+                    jni_util.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/openssl/include/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/openssl/
