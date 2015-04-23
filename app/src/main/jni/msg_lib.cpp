@@ -50,15 +50,28 @@ JNIEXPORT jlong JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1newInstance
 
 /*
  * Class:     com_jeidee_glooxforandroid_MsgClient
+ * Method:    _setLoginInfo
+ * Signature: (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V
+ */
+JNIEXPORT void JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1setLoginInfo
+  (JNIEnv *env, jobject, jlong clientPtr, jstring jid, jstring pwd, jstring host, jint port) {
+    MsgClient* clt = (MsgClient*)(clientPtr);
+    if (!clt) return;
+
+    return clt->setLoginInfo(toString(env, jid), toString(env, pwd), toString(env, host), port);
+}
+
+/*
+ * Class:     com_jeidee_glooxforandroid_MsgClient
  * Method:    _connect
- * Signature: (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Z
+ * Signature: (J)Z
  */
 JNIEXPORT jboolean JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1connect
-  (JNIEnv *env, jobject obj, jlong clientPtr, jstring jid, jstring pwd, jstring host, jint port) {
+  (JNIEnv *env, jobject, jlong clientPtr) {
     MsgClient* clt = (MsgClient*)(clientPtr);
     if (!clt) return false;
 
-    return clt->connect(toString(env, jid), toString(env, pwd), toString(env, host), port);
+    return clt->connect();
 }
 
 /*

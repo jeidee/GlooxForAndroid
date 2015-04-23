@@ -15,6 +15,7 @@
 #include "gloox/loghandler.h"
 #include "gloox/logsink.h"
 #include "gloox/connectiontcpclient.h"
+#include "gloox/connectionbosh.h"
 #include "gloox/connectionsocks5proxy.h"
 #include "gloox/connectionhttpproxy.h"
 #include "gloox/messagehandler.h"
@@ -27,6 +28,22 @@ using namespace gloox;
 using namespace std;
 
 namespace jd {
+typedef struct {
+    bool isSet;
+    string jid;
+    string pwd;
+    string host;
+    int port;
+
+    void clear() {
+        isSet = false;
+        jid = "";
+        pwd = "";
+        host = "";
+        port = 0;
+    }
+} LoginInfo;
+
 class MsgClient : public MessageSessionHandler
     , ConnectionListener
     , LogHandler
@@ -38,7 +55,8 @@ public:
     MsgClient(JavaVM* jvm, JNIEnv* env, jobject obj);
     virtual ~MsgClient();
 
-    bool connect(string jid, string pwd, string host, int port);
+    void setLoginInfo(string jid, string pwd, string host, int port);
+    bool connect();
     bool disConnect();
 
     ConnectionError recv();
@@ -64,10 +82,17 @@ public:
     virtual void handleLog(LogLevel level, LogArea area, const string& message);
 
 private:
+    /*
+     * jni callback functions
+     */
+    void callbackConnect();
+    void callbackDisconnect(int e);
+
     MessageSession*  m_session;
     MessageEventFilter*  m_messageEventFilter;
     ChatStateFilter*     m_chatStateFilter;
     Client*          m_client;
+    LoginInfo        m_loginInfo;
 
 
     JavaVM*     m_jvm;

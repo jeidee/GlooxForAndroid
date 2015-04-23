@@ -21,23 +21,38 @@ MsgClient::MsgClient(JavaVM* jvm, JNIEnv* env, jobject obj) :
          , m_messageEventFilter(NULL)
          , m_chatStateFilter(NULL) {
 
-//     jclass cls = env->GetObjectClass(obj);
-//
-//     m_cbOnConnect = env->GetMethodID(cls, "onTest", "(Ljava/lang/String;)V");
+    m_loginInfo.clear();
 }
 
 MsgClient::~MsgClient() {
 
 }
 
-bool MsgClient::connect(string jid, string pwd, string host, int port) {
-    JID j(jid);
-    m_client = new Client(j, pwd);
+void MsgClient::setLoginInfo(string jid, string pwd, string host, int port) {
+    m_loginInfo.isSet = true;
+    m_loginInfo.jid = jid;
+    m_loginInfo.pwd = pwd;
+    m_loginInfo.host = host;
+    m_loginInfo.port = port;
+}
 
-    ConnectionTCPClient* conn = new ConnectionTCPClient(m_client
-        , m_client->logInstance()
-        , host
-        , port);
+bool MsgClient::connect() {
+    if (m_loginInfo.isSet == false)
+        return false;
+
+    LOGD("jid = %s, pwd = %s, host = %s, port = %d"
+        , m_loginInfo.jid.c_str()
+        , m_loginInfo.pwd.c_str()
+        , m_loginInfo.host.c_str()
+        , m_loginInfo.port);
+
+    JID j(m_loginInfo.jid.c_str());
+    m_client = new Client(j, m_loginInfo.pwd.c_str());
+
+    ConnectionTCPClient* conn = new ConnectionTCPClient( m_client, m_client->logInstance()
+        , m_loginInfo.host.c_str()
+        , m_loginInfo.port);
+
     m_client->setConnectionImpl(conn);
 
     m_client->registerConnectionListener(this);
@@ -65,7 +80,7 @@ ConnectionError MsgClient::recv() {
 void MsgClient::onConnect() {
     LOGD("connected!!!");
 
-    callback(m_jvm, "Onasdfasdf....~~~~");
+    callbackConnect();
 
 //    m_env->CallVoidMethod(m_obj, m_cbOnConnect, m_env->NewStringUTF("[C->J] onTest recv called"));
 //
@@ -89,6 +104,8 @@ void MsgClient::onDisconnect(ConnectionError e) {
     if (e == ConnAuthenticationFailed) {
         LOGE("auth failed. reason: %d", m_client->authError());
     }
+
+    callbackDisconnect((int)e);
 }
 
 bool MsgClient::onTLSConnect(const CertInfo& info) {
@@ -152,5 +169,36 @@ void MsgClient::handleMessageSession(MessageSession* session) {
 void MsgClient::handleLog(LogLevel level, LogArea area, const string& message) {
     LOGD( "log: level: %d, area: %d, %s\n", level, area, message.c_str());
 }
+
+/*
+ * jni callback functions
+ */
+
+void MsgClient::callbackConnect(){
+    JniMethodInfo methodInfo;
+    if (! getStaticMethodInfo(m_jvm, methodInfo, "com/jeidee/glooxforandroid/MsgClient", "callbackConnect", "()V"))
+    {
+        return;
+    }
+
+    //jstring stringArg = methodInfo.env->NewStringUTF(value);
+    methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
+    //msg.methodInfo.env->DeleteLocalRef(stringArg);
+    methodInfo.env->DeleteLocalRef(methodInfo.classID);
+}
+
+void MsgClient::callbackDisconnect(int e){
+    JniMethodInfo methodInfo;
+    if (! getStaticMethodInfo(m_jvm, methodInfo, "com/jeidee/glooxforandroid/MsgClient", "callbackDisconnect", "(I)V"))
+    {
+        return;
+    }
+
+    //jstring stringArg = methodInfo.env->NewStringUTF(value);
+    methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, e);
+    //msg.methodInfo.env->DeleteLocalRef(stringArg);
+    methodInfo.env->DeleteLocalRef(methodInfo.classID);
+}
+
 
 };  // namespace jd

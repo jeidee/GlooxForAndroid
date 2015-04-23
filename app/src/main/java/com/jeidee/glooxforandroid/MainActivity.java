@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.util.Log;
+import android.os.Handler;
 
 public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
 
     private Button m_connectBtn;
     private Button m_recvBtn;
     private TextView m_textView;
+    private Handler m_handler;
     private MsgClient m_msgClient;
 
     @Override
@@ -21,31 +23,38 @@ public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        m_connectBtn = (Button) findViewById(R.id.connectBtn);
-        m_recvBtn = (Button) findViewById(R.id.recvBtn);
-
-        m_textView = (TextView) findViewById(R.id.textVal);
+        m_handler = new Handler();
 
         m_msgClient = MsgClient.Instance();
-
-        m_msgClient.setMsgClientEvent(this);
         m_msgClient.init();
+        m_msgClient.setHandler(m_handler, this);
+
+        m_connectBtn = (Button) findViewById(R.id.connectBtn);
+        m_recvBtn = (Button) findViewById(R.id.recvBtn);
+        m_textView = (TextView) findViewById(R.id.textVal);
 
         m_connectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            boolean ret = m_msgClient.connect("test1@bypass", "1234", "msg.iam0.com", 5223);
-            if (ret)
-                m_msgClient.run();
+                if (m_msgClient.connected()) {
+                    return;
+                }
 
-            m_textView.setText("call connectTest");
+                if (m_msgClient.getState() != Thread.State.NEW) {
+                    return;
+                }
+
+                m_msgClient.setLoginInfo("test1@bypass", "1234", "msg.iam0.com", 5223);
+
+                m_msgClient.start();
+                m_textView.setText("연결 중...");
             }
         });
 
         m_recvBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            m_msgClient.recv();
+            m_msgClient.disConnect();
             }
         });
     }
@@ -76,10 +85,11 @@ public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
     // implements IMsgClientEvent
     public void onConnect() {
         Log.d("MsgClientEvent", "onConnect");
-
+        m_textView.setText("연결 되었습니다.");
     }
 
     public void onDisconnect(int e) {
         Log.d("MsgClientEvent", "onDisconnect");
+        m_textView.setText("연결이 종료되었습니다.");
     }
 }

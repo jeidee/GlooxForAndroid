@@ -120,16 +120,3 @@ bool getStaticMethodInfo(JavaVM* jvm, JniMethodInfo &methodinfo, const char* cla
 
     return bRet;
 }
-
-void callback(JavaVM* jvm, const char* value){
-    JniMethodInfo methodInfo;
-    if (! getStaticMethodInfo(jvm, methodInfo, "com/jeidee/glooxforandroid/MsgClient", "onConnect", "()V"))
-    {
-        return;
-    }
-
-    jstring stringArg = methodInfo.env->NewStringUTF(value);
-    methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, stringArg);
-    methodInfo.env->DeleteLocalRef(stringArg);
-    methodInfo.env->DeleteLocalRef(methodInfo.classID);
-}

@@ -89,6 +89,7 @@
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectiontcpclient.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectiontcpbase.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionbase.h \
+ /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionbosh.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionsocks5proxy.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionhttpproxy.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/messagehandler.h \
@@ -273,6 +274,8 @@
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectiontcpbase.h:
 
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionbase.h:
+
+/Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionbosh.h:
 
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionsocks5proxy.h:
 
