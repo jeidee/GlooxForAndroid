@@ -30,6 +30,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Handler;
+import android.content.Intent;
 
 
 /**
@@ -319,6 +320,8 @@ public class LoginActivity extends Activity
             showProgress(false);
 
             if (success) {
+                Intent toMain = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(toMain);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
