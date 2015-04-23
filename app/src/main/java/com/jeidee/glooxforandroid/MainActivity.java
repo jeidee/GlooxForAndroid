@@ -82,7 +82,9 @@ public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
         return super.onOptionsItemSelected(item);
     }
 
-    // implements IMsgClientEvent
+    /*
+     * IMsgClientEvent 인터페이스 구현
+     */
     public void onConnect() {
         Log.d("MsgClientEvent", "onConnect");
         m_textView.setText("연결 되었습니다.");

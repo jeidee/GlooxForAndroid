@@ -12,6 +12,7 @@ import android.os.Handler;
 
 public class MsgClient extends Thread {
     private enum ConnectState {
+        none,
         disconnected,
         connecting,
         connected
@@ -22,7 +23,7 @@ public class MsgClient extends Thread {
     private IMsgClientEvent m_msgClientEvent;
     private long m_clientPtr;
     private boolean m_recvThreadRunning = false;
-    private ConnectState m_connectState = ConnectState.disconnected;
+    private ConnectState m_connectState = ConnectState.none;
 
     private StoredLoginInfo m_loginInfo;
     private BackoffManager m_backoff;
@@ -44,6 +45,11 @@ public class MsgClient extends Thread {
 
     // 싱글턴 명시적 초기화 함수
     public void init() {
+
+        // check already inited
+        if (m_connectState != ConnectState.none)
+            return;
+
         m_clientPtr = _newInstance();
         Log.d("MsgClient", String.format("m_clientPtr : %d", m_clientPtr));
 
@@ -54,12 +60,6 @@ public class MsgClient extends Thread {
         m_backoff.init(10, 2, true);
 
         m_connectState = ConnectState.disconnected;
-    }
-
-    // 싱글턴 명시적 해제 함수
-    // 싱글턴 객체를 리셋해야할 필요가 있을때 사용
-    public void deInit() {
-        _deleteInstance(m_clientPtr);
     }
 
     /*

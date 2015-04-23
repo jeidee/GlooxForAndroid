@@ -1,6 +1,8 @@
 #include "com_jeidee_glooxforandroid_MsgClient.h"
 
 #include "msg_client.h"
+#include "thread_lock.h"
+
 using namespace jd;
 
 #include <android/log.h>
@@ -27,14 +29,13 @@ jint JNI_OnLoad(JavaVM *jvm, void *reserved)
 }
 
 string toString(JNIEnv* env, jstring in) {
-    jboolean isCopy;
-    const char* temp = env->GetStringUTFChars(in, &isCopy);
+    char* nativeStr;
+    const char* temp = env->GetStringUTFChars(in, 0);
+    nativeStr = strdup(temp);
+    env->ReleaseStringUTFChars(in, temp);
 
-    if (isCopy == JNI_TRUE) {
-        env->ReleaseStringUTFChars(in, temp);
-    }
-
-    return string(temp);
+    LOGD("toString() %s", nativeStr);
+    return string(nativeStr);
 }
 
 /*
@@ -55,6 +56,7 @@ JNIEXPORT jlong JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1newInstance
  */
 JNIEXPORT void JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1setLoginInfo
   (JNIEnv *env, jobject, jlong clientPtr, jstring jid, jstring pwd, jstring host, jint port) {
+
     MsgClient* clt = (MsgClient*)(clientPtr);
     if (!clt) return;
 

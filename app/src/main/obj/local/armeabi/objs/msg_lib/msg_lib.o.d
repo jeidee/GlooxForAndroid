@@ -98,6 +98,15 @@
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionsocks5proxy.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionhttpproxy.h \
  /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/messagehandler.h \
+ /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/thread_lock.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/pthread.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/signal.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/signal.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/signal.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/ucontext.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/user.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/sigcontext.h \
+ /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sched.h \
  /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/android/log.h
 
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/com_jeidee_glooxforandroid_MsgClient.h:
@@ -295,5 +304,23 @@
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/connectionhttpproxy.h:
 
 /Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/gloox/messagehandler.h:
+
+/Users/jeidee/AndroidStudioProjects/GlooxForAndroid/app/src/main/jni/thread_lock.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/pthread.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/signal.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/signal.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/signal.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/ucontext.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/user.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/sigcontext.h:
+
+/Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/sched.h:
 
 /Users/jeidee/Android/ndk/platforms/android-3/arch-arm/usr/include/android/log.h:
