@@ -12,7 +12,7 @@ public class StoredLoginInfo {
     public void init() {
         m_jid = "test1@bypass";
         m_pwd = "1234";
-        m_host = "msg.ima0.com";
+        m_host = "msg.iam00.com";
         m_port = 5223;
     }
 

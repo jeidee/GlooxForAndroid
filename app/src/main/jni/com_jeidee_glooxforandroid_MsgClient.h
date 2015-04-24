@@ -48,9 +48,9 @@ JNIEXPORT jboolean JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1disConnec
 /*
  * Class:     com_jeidee_glooxforandroid_MsgClient
  * Method:    _recv
- * Signature: (J)V
+ * Signature: (J)I
  */
-JNIEXPORT void JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1recv
+JNIEXPORT jint JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1recv
   (JNIEnv *, jobject, jlong);
 
 /*

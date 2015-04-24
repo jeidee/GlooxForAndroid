@@ -19,6 +19,7 @@
 #include "gloox/connectionsocks5proxy.h"
 #include "gloox/connectionhttpproxy.h"
 #include "gloox/messagehandler.h"
+#include "gloox/rostermanager.h"
 
 using namespace gloox;
 
@@ -50,6 +51,7 @@ class MsgClient : public MessageSessionHandler
     , MessageEventHandler
     , MessageHandler
     , ChatStateHandler
+    , RosterListener
 {
 public:
     MsgClient(JavaVM* jvm, JNIEnv* env, jobject obj);

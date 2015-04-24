@@ -55,10 +55,12 @@ public class LoginActivity extends Activity
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+    private AutoCompleteTextView m_emailView;
+    private AutoCompleteTextView m_hostView;
+    private AutoCompleteTextView m_portView;
+    private EditText m_passwordView;
+    private View m_progressView;
+    private View m_loginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +74,13 @@ public class LoginActivity extends Activity
         m_msgClient.setHandler(m_handler, this);
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        m_emailView = (AutoCompleteTextView) findViewById(R.id.email);
+        m_hostView = (AutoCompleteTextView) findViewById(R.id.host);
+        m_portView = (AutoCompleteTextView) findViewById(R.id.port);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        m_passwordView = (EditText) findViewById(R.id.password);
+        m_passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -95,8 +99,8 @@ public class LoginActivity extends Activity
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        m_loginFormView = findViewById(R.id.login_form);
+        m_progressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {
@@ -115,14 +119,18 @@ public class LoginActivity extends Activity
         }
 
         // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+        m_emailView.setError(null);
+        m_hostView.setError(null);
+        m_portView.setError(null);
+        m_passwordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String email = m_emailView.getText().toString();
+        String password = m_passwordView.getText().toString();
+        String host = m_hostView.getText().toString();
+        String port = m_portView.getText().toString();
 
-        m_msgClient.setLoginInfo(email, password, "msg.iam0.com", 5223);
+        m_msgClient.setLoginInfo(email, password, host, Integer.parseInt(port));
 
         boolean cancel = false;
         View focusView = null;
@@ -130,19 +138,19 @@ public class LoginActivity extends Activity
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
+            m_passwordView.setError(getString(R.string.error_invalid_password));
+            focusView = m_passwordView;
             cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+            m_emailView.setError(getString(R.string.error_field_required));
+            focusView = m_emailView;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+            m_emailView.setError(getString(R.string.error_invalid_email));
+            focusView = m_emailView;
             cancel = true;
         }
 
@@ -180,28 +188,28 @@ public class LoginActivity extends Activity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+            m_loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            m_loginFormView.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                    m_loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
+            m_progressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            m_progressView.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                    m_progressView.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });
         } else {
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            m_progressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            m_loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -242,12 +250,19 @@ public class LoginActivity extends Activity
     /*
      * IMsgClientEvent 인터페이스 구현
      */
+    @Override
     public void onConnect() {
         Log.d("MsgClientEvent", "onConnect");
     }
 
+    @Override
     public void onDisconnect(int e) {
         Log.d("MsgClientEvent", "onDisconnect");
+    }
+
+    @Override
+    public void onRoster(ArrayList<RosterItemData> rosters) {
+
     }
 
     private interface ProfileQuery {
@@ -267,7 +282,7 @@ public class LoginActivity extends Activity
                 new ArrayAdapter<String>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        m_emailView.setAdapter(adapter);
     }
 
     /**
@@ -294,21 +309,9 @@ public class LoginActivity extends Activity
                 return true;
             }
 
-            if (m_msgClient.getState() != Thread.State.NEW) {
+            if (!m_msgClient.connect()) {
+                Log.e("Splash", "Connnect failed!");
                 return false;
-            }
-
-            m_msgClient.start();
-
-            while (true) {
-                try {
-                    Thread.sleep(10);
-                    if (m_msgClient.connect()) {
-                        break;
-                    }
-                } catch (InterruptedException e) {
-                    return false;
-                }
             }
 
             return true;
@@ -324,8 +327,10 @@ public class LoginActivity extends Activity
                 startActivity(toMain);
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                // @todo : 연결실패에 대한 상세 상황별 피드백 제공 필요
+                // 예를 들면, 존재하지 않는 id, 패스워드 오류, invalid host, invalid port...
+                m_passwordView.setError(getString(R.string.error_incorrect_password));
+                m_passwordView.requestFocus();
             }
         }
 

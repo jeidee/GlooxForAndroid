@@ -1,6 +1,6 @@
 package com.jeidee.glooxforandroid;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,11 +10,10 @@ import android.widget.TextView;
 import android.util.Log;
 import android.os.Handler;
 
-public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
+import java.util.ArrayList;
 
-    private Button m_connectBtn;
-    private Button m_recvBtn;
-    private TextView m_textView;
+public class MainActivity extends Activity implements IMsgClientEvent {
+
     private Handler m_handler;
     private MsgClient m_msgClient;
 
@@ -29,34 +28,11 @@ public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
         m_msgClient.init();
         m_msgClient.setHandler(m_handler, this);
 
-        m_connectBtn = (Button) findViewById(R.id.connectBtn);
-        m_recvBtn = (Button) findViewById(R.id.recvBtn);
-        m_textView = (TextView) findViewById(R.id.textVal);
-
-        m_connectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (m_msgClient.connected()) {
-                    return;
-                }
-
-                if (m_msgClient.getState() != Thread.State.NEW) {
-                    return;
-                }
-
-                m_msgClient.setLoginInfo("test1@bypass", "1234", "msg.iam0.com", 5223);
-
-                m_msgClient.start();
-                m_textView.setText("연결 중...");
-            }
-        });
-
-        m_recvBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            m_msgClient.disConnect();
-            }
-        });
+        // 연결되었지만 RECV 쓰레드가 작동 중이지 않을 경우
+        // 쓰레드 시작
+        if (m_msgClient.connected() && !m_msgClient.running()) {
+            m_msgClient.start();
+        }
     }
 
 
@@ -85,13 +61,19 @@ public class MainActivity extends ActionBarActivity implements IMsgClientEvent {
     /*
      * IMsgClientEvent 인터페이스 구현
      */
+    @Override
     public void onConnect() {
         Log.d("MsgClientEvent", "onConnect");
-        m_textView.setText("연결 되었습니다.");
     }
 
+    @Override
     public void onDisconnect(int e) {
         Log.d("MsgClientEvent", "onDisconnect");
-        m_textView.setText("연결이 종료되었습니다.");
+    }
+
+    @Override
+    public void onRoster(ArrayList<RosterItemData> rosters) {
+        Log.d("MsgClientEvent", "onRoster");
+
     }
 }

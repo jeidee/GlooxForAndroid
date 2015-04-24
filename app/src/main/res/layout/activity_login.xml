@@ -32,6 +32,16 @@
                 android:imeOptions="actionUnspecified" android:inputType="textPassword"
                 android:maxLines="1" android:singleLine="true" />
 
+            <AutoCompleteTextView android:id="@+id/host" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/prompt_host"
+                android:text="msg.iam0.com"
+                android:singleLine="true" />
+
+            <AutoCompleteTextView android:id="@+id/port" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/prompt_port"
+                android:text="5223"
+                android:singleLine="true" />
+
             <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" android:text="@string/action_sign_in"

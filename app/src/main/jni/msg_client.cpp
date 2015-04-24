@@ -37,8 +37,10 @@ void MsgClient::setLoginInfo(string jid, string pwd, string host, int port) {
 }
 
 bool MsgClient::connect() {
-    if (m_loginInfo.isSet == false)
+    if (m_loginInfo.isSet == false) {
+        LOGE("m_loginInfo.isSet == false.");
         return false;
+    }
 
     LOGD("jid = %s, pwd = %s, host = %s, port = %d"
         , m_loginInfo.jid.c_str()

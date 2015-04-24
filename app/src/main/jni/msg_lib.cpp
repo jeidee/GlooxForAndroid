@@ -105,12 +105,11 @@ JNIEXPORT void JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1deleteInstanc
   * Method:    _recv
   * Signature: (J)V
   */
- JNIEXPORT void JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1recv
+ JNIEXPORT jint JNICALL Java_com_jeidee_glooxforandroid_MsgClient__1recv
    (JNIEnv *env, jobject obj, jlong clientPtr) {
     MsgClient* clt = (MsgClient*)(clientPtr);
-    if (!clt) return;
+    if (!clt) return -1;
 
-    clt->recv();
-
+    return clt->recv();
 }
 
